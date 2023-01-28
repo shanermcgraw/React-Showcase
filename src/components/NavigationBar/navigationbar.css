@@ -11,6 +11,8 @@
   border-radius: 40px;
   font-size: 1.25rem;
   padding: 10px 5px;
+  text-decoration: none;
+  color: black;
 }
 
 .Navigation-item-container:hover {
@@ -19,8 +21,8 @@
 }
 
 .Navigation-icon-container {
-    display: flex;
-    font-size: 2rem;
+  display: flex;
+  font-size: 2rem;
 }
 
 .Navigation-item-icon {
