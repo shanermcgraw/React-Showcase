@@ -1,0 +1,39 @@
+.Navigation-container {
+  border-right: 1px black solid;
+  height: 100vh;
+  padding: 0 20px;
+  min-width: 300px;
+}
+
+.Navigation-item-container {
+  display: flex;
+  align-items: center;
+  border-radius: 40px;
+  font-size: 1.25rem;
+  padding: 10px 5px;
+}
+
+.Navigation-item-container:hover {
+  cursor: pointer;
+  background-color: rgba(236, 236, 236, 1);
+}
+
+.Navigation-icon-container {
+    display: flex;
+    font-size: 2rem;
+}
+
+.Navigation-item-icon {
+  color: black;
+  margin-right: 10px;
+  font-size: 50px;
+}
+
+.Navigation-item-label {
+  margin: 0;
+}
+
+.title {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+}

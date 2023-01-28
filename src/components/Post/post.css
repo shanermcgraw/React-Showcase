@@ -1,0 +1,39 @@
+.Post-container {
+    border-bottom: 1px rgb(175, 175, 175) solid;
+    padding: 20px 0;
+    max-width: 400px;
+}
+
+.Post-header-container {
+    font-size: 1rem;
+    padding-bottom: 10px;
+}
+
+.Post-image-container {
+  display: flex;
+  border-radius: 5px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.Post-icon-container {
+  margin: 0 5px;
+}
+
+.Post-icon-container:hover {
+  color: rgb(146, 146, 146);
+  cursor: pointer;
+}
+
+.Post-icons-container {
+  display: flex;
+  align-items: center;
+}
+
+.Post-details-container {
+  font-size: 1rem;
+}
+
+p {
+  margin: 0;
+}
