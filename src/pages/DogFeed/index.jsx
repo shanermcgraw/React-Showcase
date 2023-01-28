@@ -1,55 +1,78 @@
-import React, { useEffect, useState, useRef, Suspense } from "react";
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  Suspense,
+  useContext,
+} from "react";
 import { Icon, Skeleton } from "@mui/material";
-import generateDogName from "../../utils/helpers/generateDogName";
+import generateDogInfo from "../../utils/helpers/generateDogInfo";
 import "./dogfeed.css";
+import { FilterContext } from "../../context";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const Post = React.lazy(() => import("../../components/Post"));
 
 export default function DogFeed() {
+  const listRef = useRef();
   const [dogPosts, setDogPosts] = useState([]);
   const [loadingPosts, setLoadingPosts] = useState(false);
 
-  const listRef = useRef();
+  const { filters } = useContext(FilterContext);
 
-  const loadDogImages = async () => {
-    const dogs = await fetch("https://dog.ceo/api/breeds/image/random/4").then(
-      (res) => res.json()
-    );
+  const [currentFiltersActive, setCurrentFiltersActive] = useState(
+    filters.length
+  );
 
-    dogs.message.forEach((url) => {
-      setDogPosts((prevPosts) => [
-        ...prevPosts,
-        {
-          url,
-          name: generateDogName(),
-          description: "woof woof",
-          likes: Math.floor(Math.random() * 100),
-          date: "4 min",
-        },
-      ]);
+  const fetchDogs = async () => {
+    const filterIndex = Math.floor(Math.random() * filters.length);
+
+    const apiCall =
+      filters.length == 0
+        ? "https://dog.ceo/api/breeds/image/random/4"
+        : `https://dog.ceo/api/breed/${filters[filterIndex]}/images/random/4`;
+
+    return axios.get(apiCall).then((res) => {
+      if (res?.data?.status == "success") {
+        res.data.message.forEach((url) => {
+          setDogPosts((prev) => [...prev, generateDogInfo(url)]);
+        });
+      }
     });
-
-    setLoadingPosts(false);
   };
 
+  const { data, refetch } = useQuery({
+    queryKey: ["dogImages", filters],
+    queryFn: () => fetchDogs(),
+
+    refetchOnWindowFocus: false,
+  });
+
   useEffect(() => {
-    loadDogImages();
-  }, []);
+    if (filters.length == 0) {
+      setCurrentFiltersActive(0);
+      setDogPosts([]);
+    } else if (filters.length > 0 && currentFiltersActive == 0) {
+      setDogPosts([]);
+      setCurrentFiltersActive(filters.length);
+    }
+  }, [filters]);
 
   function onScroll() {
     if (listRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = listRef.current;
-      if (scrollTop + clientHeight === scrollHeight && loadingPosts === false) {
+      if (scrollTop + clientHeight >= scrollHeight && loadingPosts === false) {
         setLoadingPosts(true);
-        loadDogImages();
+        refetch().then(() => setLoadingPosts(false));
       }
     }
   }
 
   return (
     <div className="App-feed" ref={listRef} onScroll={onScroll}>
-      {dogPosts.map((dogPost) => (
-        <Suspense fallback={<Skeleton width={400} height={600} />}>
+      {dogPosts.map((dogPost, index) => (
+        <Suspense key={index} fallback={<Skeleton width={400} height={600} />}>
           <Post dogPost={dogPost} />
         </Suspense>
       ))}

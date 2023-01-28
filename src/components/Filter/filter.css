@@ -1,0 +1,13 @@
+.Filter-container {
+  margin: 20px 10px;
+  width: 30%;
+}
+
+.Chip-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Chip {
+    margin: 1px;
+}
