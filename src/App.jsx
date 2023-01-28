@@ -1,6 +1,6 @@
+import React from "react";
 import "./App.css";
 import NavigationBar from "./components/NavigationBar";
-import Post from "./components/Post";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DogFeed from "./pages/DogFeed";
 

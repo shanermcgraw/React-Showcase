@@ -18,7 +18,7 @@ export default function Post({ dogPost }) {
         </p>
       </div>
       <div className="Post-image-container">
-        <img src={dogPost.url} className="Post-image" />
+        <img src={dogPost.url} className="Post-image" loading="lazy" />
       </div>
       <div className="Post-icons-container">
         <div

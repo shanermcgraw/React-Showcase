@@ -1,8 +1,9 @@
-import { Icon } from "@mui/material";
-import { useEffect, useState, useRef } from "react";
-import Post from "../../components/Post";
+import React, { useEffect, useState, useRef, Suspense } from "react";
+import { Icon, Skeleton } from "@mui/material";
 import generateDogName from "../../utils/helpers/generateDogName";
 import "./dogfeed.css";
+
+const Post = React.lazy(() => import("../../components/Post"));
 
 export default function DogFeed() {
   const [dogPosts, setDogPosts] = useState([]);
@@ -48,9 +49,15 @@ export default function DogFeed() {
   return (
     <div className="App-feed" ref={listRef} onScroll={onScroll}>
       {dogPosts.map((dogPost) => (
-        <Post dogPost={dogPost} />
+        <Suspense fallback={<Skeleton width={400} height={600} />}>
+          <Post dogPost={dogPost} />
+        </Suspense>
       ))}
-      {loadingPosts && <Icon>sync</Icon>}
+      {loadingPosts && (
+        <div className="Dogfeed-loadmore-container">
+          <Icon className="Dogfeed-loading-icon">sync</Icon>
+        </div>
+      )}
     </div>
   );
 }
