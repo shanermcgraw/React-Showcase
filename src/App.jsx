@@ -1,17 +1,20 @@
 import "./App.css";
 import NavigationBar from "./components/NavigationBar";
 import Post from "./components/Post";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DogFeed from "./pages/DogFeed";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <NavigationBar />
-        <div className="App-feed">
-          <Post />
-          <Post />
-          <Post />
-        </div>
+        <BrowserRouter>
+          <NavigationBar />
+          <Routes>
+            <Route path="/" element={<DogFeed />} />
+            <Route path="/messages" />
+          </Routes>
+        </BrowserRouter>
       </header>
     </div>
   );

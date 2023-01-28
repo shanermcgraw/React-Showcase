@@ -1,17 +1,5 @@
-.App {
-}
-
 .App-header {
   min-height: 100vh;
   display: flex;
   font-size: calc(10px + 2vmin);
-}
-
-.App-feed {
-  overflow: scroll;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  flex: 1;
-  height: 100vh;
 }

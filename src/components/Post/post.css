@@ -2,6 +2,7 @@
     border-bottom: 1px rgb(175, 175, 175) solid;
     padding: 20px 0;
     max-width: 400px;
+    width: 50%;
 }
 
 .Post-header-container {
@@ -14,6 +15,12 @@
   border-radius: 5px;
   overflow: hidden;
   aspect-ratio: 1;
+  background-color: black;
+}
+
+.Post-image {
+    object-fit: contain;
+    width: 100%;
 }
 
 .Post-icon-container {

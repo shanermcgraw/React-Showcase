@@ -6,21 +6,19 @@ import {
 import { useState } from "react";
 import "./post.css";
 
-export default function Post() {
+export default function Post({ dogPost }) {
   const [liked, setLiked] = useState(false);
-
-  const likeCount = 12;
 
   return (
     <div className="Post-container">
       <div className="Post-header-container">
         <p>
-          <b>Paws MacGruffin</b>
-          &nbsp;• 1h
+          <b>{dogPost.name}</b>
+          &nbsp;• {dogPost.date}
         </p>
       </div>
       <div className="Post-image-container">
-        <img src="https://images.dog.ceo/breeds/germanshepherd/n02106662_597.jpg" />
+        <img src={dogPost.url} className="Post-image" />
       </div>
       <div className="Post-icons-container">
         <div
@@ -35,11 +33,11 @@ export default function Post() {
       </div>
       <div className="Post-details-container">
         <p>
-          <b>{likeCount + (liked ? 1 : 0)} likes</b>
+          <b>{dogPost.likes + (liked ? 1 : 0)} likes</b>
         </p>
         <p>
-          <b>Paws MacGuffin&nbsp;</b>
-          This is a test description
+          <b>{dogPost.name}&nbsp;</b>
+          {dogPost.description}
         </p>
       </div>
     </div>
