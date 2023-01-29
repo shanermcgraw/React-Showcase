@@ -1,0 +1,40 @@
+.Navigation-footer-container {
+  display: flex;
+  width: 100%;
+  background-color: black;
+  justify-content: space-between;
+}
+
+.Navigation-footer-item-container {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 5px;
+  text-decoration: none;
+}
+
+.Navigation-item-footer-container:hover {
+  cursor: pointer;
+  background-color: rgba(236, 236, 236, 1);
+}
+
+.Navigation-footer-icon-container {
+  display: flex;
+  font-size: 2rem;
+}
+
+.Navigation-footer-item-icon {
+  color: white;
+  margin-right: 10px;
+  font-size: 30px;
+}
+
+.Navigation-item-label {
+  margin: 0;
+}
+
+.title {
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+}

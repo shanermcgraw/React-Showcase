@@ -4,7 +4,13 @@
   align-items: center;
   flex-direction: column;
   flex: 1;
-  height: 100vh;
+  max-height: 100vh;
+}
+
+@media screen and (max-width: 900px) {
+  .App-feed {
+    height: 90vh;
+  }
 }
 
 .Dogfeed-loadmore-container {

@@ -2,7 +2,8 @@
   border-right: 1px black solid;
   height: 100vh;
   padding: 0 20px;
-  min-width: 300px;
+  max-width: 300px;
+  width: 20%;
 }
 
 .Navigation-item-container {

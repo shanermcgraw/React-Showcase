@@ -6,9 +6,13 @@ import DogFeed from "./pages/DogFeed";
 import Filter from "./components/Filter";
 import { FilterContext } from "./context";
 import { QueryClientProvider, QueryClient } from "react-query";
+import { useMediaQuery, useTheme } from "@mui/material";
+import NavigationFooter from "./components/NavigationFooter";
 
 function App() {
   const [filters, setFilters] = useState([]);
+  const theme = useTheme();
+  const aboveMd = useMediaQuery(theme.breakpoints.up("md"));
 
   const queryClient = new QueryClient();
 
@@ -22,30 +26,30 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-
-    <div className="App">
-      <header className="App-header">
-        <BrowserRouter>
-          <NavigationBar />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <FilterContext.Provider
-                  value={{ filters, addFilter, removeFilter }}
-                >
-                  <div className="App-content-container">
-                    <DogFeed />
-                    <Filter />
-                  </div>
-                </FilterContext.Provider>
-              }
-            />
-            <Route path="/messages" />
-          </Routes>
-        </BrowserRouter>
-      </header>
-    </div>
+      <div className="App">
+        <header className="App-header">
+          <BrowserRouter>
+            {aboveMd && <NavigationBar />}
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <FilterContext.Provider
+                    value={{ filters, addFilter, removeFilter }}
+                  >
+                    <div className="App-content-container">
+                      <DogFeed />
+                      <Filter />
+                    </div>
+                  </FilterContext.Provider>
+                }
+              />
+              <Route path="/messages" />
+            </Routes>
+            {!aboveMd && <NavigationFooter />}
+          </BrowserRouter>
+        </header>
+      </div>
     </QueryClientProvider>
   );
 }
