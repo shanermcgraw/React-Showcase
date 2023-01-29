@@ -2,11 +2,11 @@
     border-bottom: 1px rgb(175, 175, 175) solid;
     padding: 20px 0;
     max-width: 400px;
-    width: 50%;
+    width: 70%;
 }
 
 .Post-header-container {
-    font-size: 1rem;
+    font-size: 0.9rem;
     padding-bottom: 10px;
 }
 
@@ -35,10 +35,11 @@
 .Post-icons-container {
   display: flex;
   align-items: center;
+  margin-top: 5px;
 }
 
 .Post-details-container {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 p {

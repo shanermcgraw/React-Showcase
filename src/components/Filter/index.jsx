@@ -1,31 +1,31 @@
-import { Chip, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { Chip, FormControl, InputLabel, MenuItem, Select, useMediaQuery, useTheme } from "@mui/material";
+import axios from "axios";
+import { useContext, useState } from "react";
+import { useQuery } from "react-query";
 import { FilterContext } from "../../context";
 import "./filter.css";
 
 export default function Filter() {
   const [breedList, setBreedList] = useState([]);
-
+  
   const { filters, addFilter, removeFilter } = useContext(FilterContext);
 
   const getBreeds = async () => {
-    const breeds = await fetch("https://dog.ceo/api/breeds/list/all").then(
-      (res) => res.json()
-    );
-
-    setBreedList(Object.keys(breeds.message));
+    const breeds = await axios.get("https://dog.ceo/api/breeds/list/all");
+    if (breeds.data) {
+      setBreedList(Object.keys(breeds.data.message));
+    }
   };
+
+  useQuery("dogBreeds", getBreeds);
 
   function handleSelect(value) {
     addFilter(value);
   }
 
-  useEffect(() => {
-    getBreeds();
-  }, []);
-
   return (
     <div className="Filter-container">
+      <h3 className="Filter-title">Filters</h3>
       <FormControl fullWidth>
         <InputLabel id="breed-label">Breed</InputLabel>
         <Select
@@ -37,7 +37,7 @@ export default function Filter() {
           onChange={(e) => handleSelect(e.target.value)}
         >
           {breedList.map((breed) => (
-            <MenuItem divider dense value={breed}>
+            <MenuItem divider dense value={breed} key={breed}>
               {breed}
             </MenuItem>
           ))}
@@ -45,7 +45,7 @@ export default function Filter() {
       </FormControl>
       <div className="Chip-container">
         {filters.map((filter) => (
-          <div className="Chip">
+          <div className="Chip" key={filter}>
             <Chip
               label={filter}
               color="primary"

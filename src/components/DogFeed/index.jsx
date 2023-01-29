@@ -21,10 +21,6 @@ export default function DogFeed() {
 
   const { filters } = useContext(FilterContext);
 
-  const [currentFiltersActive, setCurrentFiltersActive] = useState(
-    filters.length
-  );
-
   const fetchDogs = async () => {
     const filterIndex = Math.floor(Math.random() * filters.length);
 
@@ -50,12 +46,8 @@ export default function DogFeed() {
   });
 
   useEffect(() => {
-    if (filters.length == 0) {
-      setCurrentFiltersActive(0);
+    if (filters) {
       setDogPosts([]);
-    } else if (filters.length > 0 && currentFiltersActive == 0) {
-      setDogPosts([]);
-      setCurrentFiltersActive(filters.length);
     }
   }, [filters]);
 
