@@ -1,4 +1,5 @@
-import { Modal, useMediaQuery, useTheme } from "@mui/material";
+import { FilterList } from "@mui/icons-material";
+import { Fab, IconButton, Modal, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import DogFeed from "../../components/DogFeed";
 import Filter from "../../components/Filter";
@@ -18,13 +19,27 @@ export default function Home() {
   function removeFilter(filter) {
     setFilters((prevFilters) => prevFilters.filter((f) => f != filter));
   }
+
+  function FilterFab() {
+    return (
+      <button onClick={() => setOpenFilters(true)} className="Filter-fab">
+        <FilterList fontSize="medium" />
+      </button>
+    );
+  }
+
   return (
     <FilterContext.Provider value={{ filters, addFilter, removeFilter }}>
       <div className="App-content-container">
+        {!aboveSm && <FilterFab />}
         <DogFeed />
         {aboveSm && <Filter />}
         {!aboveSm && (
-          <Modal open={openFilters} className="Modal-filter-container">
+          <Modal
+            open={openFilters}
+            className="Modal-filter-container"
+            onBackdropClick={() => setOpenFilters(false)}
+          >
             <Filter />
           </Modal>
         )}

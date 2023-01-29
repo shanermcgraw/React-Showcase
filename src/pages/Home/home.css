@@ -4,5 +4,21 @@
 }
 
 .Modal-filter-container {
-    width: 75%;
+  width: 75%;
+}
+
+.Filter-fab {
+  position: fixed;
+  top: 2%;
+  right: 2%;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  box-shadow: 2px 2px 2px black;
+}
+
+.Filter-fab:hover {
+    cursor: pointer;
 }
