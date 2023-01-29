@@ -2,16 +2,18 @@
 
 This project was created to showcase some of my React capabilites.
 
+## View Site
+
+Currently the app is set to auto deploy to [https://react-showcase.vercel.app/](https://react-showcase.vercel.app).
+
 ## Run locally
 
 First run the development server:
 
 ```bash
-npm run dev
+npm start
 # or
-yarn dev
-# or
-pnpm dev
+yarn start
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
