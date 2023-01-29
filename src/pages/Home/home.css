@@ -13,8 +13,8 @@
   position: fixed;
   top: 2%;
   right: 2%;
-  aspect-ratio: 1;
   border-radius: 100%;
+  padding: 3px;
   border: none;
   display: flex;
   align-items: center;
