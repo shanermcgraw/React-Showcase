@@ -1,5 +1,5 @@
 import { FilterList } from "@mui/icons-material";
-import { Fab, IconButton, Modal, useMediaQuery, useTheme } from "@mui/material";
+import { Modal, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import DogFeed from "../../components/DogFeed";
 import Filter from "../../components/Filter";
@@ -17,7 +17,7 @@ export default function Home() {
   }
 
   function removeFilter(filter) {
-    setFilters((prevFilters) => prevFilters.filter((f) => f != filter));
+    setFilters((prevFilters) => prevFilters.filter((f) => f !== filter));
   }
 
   function FilterFab() {

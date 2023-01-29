@@ -1,4 +1,4 @@
-import { Chip, FormControl, InputLabel, MenuItem, Select, useMediaQuery, useTheme } from "@mui/material";
+import { Chip, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useQuery } from "react-query";
@@ -7,7 +7,7 @@ import "./filter.css";
 
 export default function Filter() {
   const [breedList, setBreedList] = useState([]);
-  
+
   const { filters, addFilter, removeFilter } = useContext(FilterContext);
 
   const getBreeds = async () => {

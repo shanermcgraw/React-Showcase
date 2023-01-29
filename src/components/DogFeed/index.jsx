@@ -25,12 +25,12 @@ export default function DogFeed() {
     const filterIndex = Math.floor(Math.random() * filters.length);
 
     const apiCall =
-      filters.length == 0
+      filters.length === 0
         ? "https://dog.ceo/api/breeds/image/random/4"
         : `https://dog.ceo/api/breed/${filters[filterIndex]}/images/random/4`;
 
     return axios.get(apiCall).then((res) => {
-      if (res?.data?.status == "success") {
+      if (res?.data?.status === "success") {
         res.data.message.forEach((url) => {
           setDogPosts((prev) => [...prev, generateDogInfo(url)]);
         });
@@ -38,7 +38,7 @@ export default function DogFeed() {
     });
   };
 
-  const { data, refetch } = useQuery({
+  const { refetch } = useQuery({
     queryKey: ["dogImages", filters],
     queryFn: () => fetchDogs(),
 
