@@ -37,10 +37,11 @@ export default function Home() {
         {!aboveSm && (
           <Modal
             open={openFilters}
-            className="Modal-filter-container"
             onBackdropClick={() => setOpenFilters(false)}
           >
-            <Filter />
+            <div className="Modal-filter-container">
+              <Filter />
+            </div>
           </Modal>
         )}
       </div>
